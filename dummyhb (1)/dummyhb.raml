@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: dummyhb
+version: v1
+protocols: [ HTTP,HTTPS ]
+mediaType: application/json
+
+types:
+  api-status: !include /exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-status/0.1.3/api-status.raml
+  error-response: !include /exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/error-response.raml
+traits:
+  400-response: !include exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/400-response.raml
+  401-response: !include exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/401-response.raml
+  403-response: !include exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/403-response.raml
+  500-response: !include exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/500-response.raml
+  503-response: !include exchange_modules/88d26fee-1ab8-4462-beb5-0481da09529e/api-heartbeat-responses/0.1.3/503-response.raml
+resourceTypes:
+  heartbeat:
+    description: Main API healthcheck.
+    get:
+      description: Gets the status of this API. API dependencies can optionally be queried by specifying the back-end query param.
+      queryParameters:
+        back-end:
+          description: Represents semi-colon separated list of  back-end or external system names on which this API depends and whose status is queried
+          required: false
+          default: ALL
+          type: string
+      is:
+        - 400-response
+        - 401-response
+        - 403-response
+        - 500-response
+        - 503-response
+      responses:
+        200:
+          body: 
+            type: api-status
+
+/v1/heartbeats:
+  type: 
+   heartbeat:
+     example: api-status

@@ -1,0 +1,18 @@
+{
+  "main": "dummyhb.raml",
+  "name": "dummyhb",
+  "classifier": "raml",
+  "tags": [],
+  "dependencies": [
+    {
+      "groupId": "88d26fee-1ab8-4462-beb5-0481da09529e",
+      "assetId": "api-status",
+      "version": "0.1.3"
+    },
+    {
+      "groupId": "88d26fee-1ab8-4462-beb5-0481da09529e",
+      "assetId": "api-heartbeat-responses",
+      "version": "0.1.3"
+    }
+  ]
+}

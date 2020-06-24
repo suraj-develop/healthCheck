@@ -1,0 +1,26 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  name:
+    type: string
+    required: true
+    description: The name of the API responding the health check query 
+  status:
+    type: integer
+    required: true
+    description: The HTTP status returned to the caller.
+  message:
+    type: string
+    required: true
+    description: Short message describing the status of the call.
+    enum:
+      - Success
+      - Error
+  elapsed_ms:
+    type: integer
+    required: false
+    description: Time (in mili second) that it took to service this request.
+  transaction_id:
+    type: string
+    required: false
+    description: Unique identifier returned to the caller for troubleshooting and identifying the failed transaction. Not required for successful calls but should be used for failed calls to give enough detail to troubleshoot the error.
